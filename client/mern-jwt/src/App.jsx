@@ -9,15 +9,16 @@ import Contact from './pages/Contact.jsx';
 import Books from './pages/Books.jsx';
 import RegisterUser from './pages/RegisterUser.jsx';
 import Login from './components/Login.jsx';
+import Error from './components/Error.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    // errorElement: <Error />,
+    errorElement: <Error />,
     element: <RoutesLayout />,
     children: [
       {
-        path: 'home',
+        path: '/',
         element: <Home />
       },
       {

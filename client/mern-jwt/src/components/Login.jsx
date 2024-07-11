@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 function Login() {
@@ -76,6 +77,11 @@ function Login() {
                   Login
                 </button>
               </div>
+              <label className="label">
+                <a href="#" className="label-text-alt link link-hover">
+                  Don't have an account? <NavLink to="/register"className="text-cyan-900">Register here </NavLink>
+                </a>
+              </label>
             </form>
           </div>
         </div>

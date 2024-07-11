@@ -5,7 +5,7 @@ export default function Navbar() {
   const navItems = (
     <>
       <li>
-        <NavLink to="/home">Home </NavLink>
+        <NavLink to="/">Home </NavLink>
       </li>
       {/* <li>
         <NavLink to="/book">Books </NavLink>
@@ -18,9 +18,6 @@ export default function Navbar() {
       </li>
       <li>
         <NavLink to="/about">About </NavLink>
-      </li>
-      <li>
-        <NavLink to="/register">Register </NavLink>
       </li>
     </>
   );
