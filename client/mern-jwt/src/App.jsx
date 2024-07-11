@@ -10,6 +10,7 @@ import Books from './pages/Books.jsx';
 import RegisterUser from './pages/RegisterUser.jsx';
 import Login from './components/Login.jsx';
 import Error from './components/Error.jsx';
+import Profile from './pages/UserProfile.jsx';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />
+      },
+      {
+        path: 'profile',
+        element: <Profile />
       }
     ]
   }

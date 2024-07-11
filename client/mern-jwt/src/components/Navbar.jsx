@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+  const navigate = useNavigate();
+
   const navItems = (
     <>
       <li>
@@ -19,8 +22,17 @@ export default function Navbar() {
       <li>
         <NavLink to="/about">About </NavLink>
       </li>
+      <li>
+        <NavLink to="/profile">Profile </NavLink>
+      </li>
     </>
   );
+
+  const navigateToLogin = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   return (
     <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 fixed z-10">
       <div className="navbar bg-base-100">
@@ -42,18 +54,22 @@ export default function Navbar() {
                 />
               </svg>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-            >
-              {navItems}
-            </ul>
+            {localStorage.getItem("token") && (
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              >
+                {navItems}
+              </ul>
+            )}
           </div>
           <a className="text-2xl font-bold cursor-pointer">Mern</a>
         </div>
         <div className="navbar-end">
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{navItems}</ul>
+            {localStorage.getItem("token") && (
+              <ul className="menu menu-horizontal px-1">{navItems}</ul>
+            )}
           </div>
           <div className="hidden md:block">
             <label className="input input-bordered flex items-center gap-2">
@@ -98,11 +114,22 @@ export default function Navbar() {
               <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
             </svg>
           </label>
-          <div className="">
-            <a className="btn bg-black text-white px-3 py-2 rounded-md hover:bg-slate-800 duration-300">
-               <NavLink to="/login">Login </NavLink>
-            </a>
-          </div>
+          {localStorage.getItem("token") ? (
+            <div className="">
+              <a
+                className="btn bg-black text-white px-3 py-2 rounded-md hover:bg-slate-800 duration-300"
+                onClick={navigateToLogin}
+              >
+                Logout
+              </a>
+            </div>
+          ) : (
+            <div className="">
+              <a className="btn bg-black text-white px-3 py-2 rounded-md hover:bg-slate-800 duration-300">
+                <NavLink to="/login">Login </NavLink>
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </div>

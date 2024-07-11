@@ -7,10 +7,10 @@ exports.allUsers = async (req, res) => {
   return res.send(user);
 };
 
-// exports.getBookById = async (req, res) => {
-//   const bookObject = await books.findById(req.params.id);
-//   return res.status(200).json({ details: bookObject });
-// };
+exports.getUserById = async (req, res) => {
+  const userObject = await users.findById(req.params.id);
+  return res.status(200).json({ details: userObject });
+};
 
 // exports.updateBook = async (req, res) => {
 //   const body = req.body;
@@ -99,7 +99,7 @@ exports.login = async (req, res) => {
         jwt.sign(payload, 'jwtSecret', { expiresIn: 3600000}, 
             (err, token) => {
                 if (err) throw err;
-                return res.json({ token })
+                return res.json({ token: token, userId: isExist.id, userName: isExist.username })
             }
         )
     }

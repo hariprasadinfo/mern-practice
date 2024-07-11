@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Login() {
+
+ const navigate = useNavigate();
   const iniitialFormState = {
     email: "",
     password: "",
   };
+
   const [formData, setFormData] = useState(iniitialFormState);
 
   const handleInputFields = (e) => {
@@ -18,9 +21,11 @@ function Login() {
     e.preventDefault();
     console.log(formData);
     axios.post('http://localhost:5000/api/login', formData).then(res => {
-        console.log(res.data);
         if (res.data && res.data.token) {
             localStorage.setItem('token',res.data.token);
+            localStorage.setItem('username',res.data.userName);
+            localStorage.setItem('userid',res.data.userId);
+            navigate('/');
         }
     })
   };

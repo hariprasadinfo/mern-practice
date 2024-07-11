@@ -11,7 +11,7 @@ router.post("/login", usersController.login);
 
 // router.delete("/deleteBook/:id", booksController.deleteBook);
 
-// router.get("/getBookById/:id", booksController.getBookById);
+router.get("/getUserById/:id", middleware, usersController.getUserById);
 
 router.get("/allUsers", middleware, usersController.allUsers);
 
